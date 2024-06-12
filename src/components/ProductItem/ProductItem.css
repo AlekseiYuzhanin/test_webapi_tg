@@ -6,9 +6,10 @@
     width: 170px;
 }
 
+
 .img {
     width: 100%;
-    background: lightgrey;
+    background: lightgray;
     height: 100px;
     margin: 0 auto;
     background: var(--tg-theme-button-color);
@@ -18,3 +19,6 @@
     font-size: 0.8em;
 }
 
+.add-btn {
+    width: 100%;
+}
