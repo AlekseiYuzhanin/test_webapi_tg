@@ -37,7 +37,7 @@ const Form = () => {
     }
 
     return (
-        <div className={"form"}>
+        <div className={"form"} style={{ backgroundColor: 'white', color: 'black' }}>
             <h3>Введете ваши данные</h3>
             <input
                 className={'input'}

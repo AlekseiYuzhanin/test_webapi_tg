@@ -3,7 +3,7 @@ import './ProductsList.css'
 
 const ProductsList = () => {
     return (
-        <div>
+        <div style={{ backgroundColor: 'white', color: 'black' }}>
             Product List
         </div>
     );
