@@ -52,7 +52,7 @@ const ProductsList = () => {
             totalPrice: getTotalPrice(addItem),
             queryId,
         }
-        fetch('http://localhost:8080', {
+        fetch('https://testwebapitgback-loj2jp3l.b4a.run/web-data', {
             method: 'POST',
             headers : {
                 'Content-Type': 'application/json',
