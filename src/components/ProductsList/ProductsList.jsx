@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import './ProductsList.css'
 import ProductItem from "../ProductItem/ProductItem";
 import {useTelegram} from "../../hooks/useTelegram";
 
 const ProductsList = () => {
+    const {tg, queryId} = useTelegram();
 
     const products = [
         {id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые'},
@@ -23,7 +24,6 @@ const ProductsList = () => {
     }
 
     const [addItem, setAddItem] = useState([]);
-    const {tg} = useTelegram();
     const onAdd = (product) => {
         const alreadyAdded = addItem.find(item => item.id === product.id);
 
@@ -46,6 +46,30 @@ const ProductsList = () => {
             })
         }
     }
+    const onSendData = useCallback(() => {
+        const data = {
+            products: addItem,
+            totalPrice: getTotalPrice(addItem),
+            queryId,
+        }
+        fetch('http://localhost:8080', {
+            method: 'POST',
+            headers : {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        tg.sendData(JSON.stringify(data));
+    },[tg, addItem,  queryId])
+
+    useEffect(() => {
+        tg.onEvent('mainButtonClicked', onSendData);
+        return () => {
+            tg.offEvent('mainButtonClicked', onSendData);
+        }
+    }, [tg, onSendData]);
+
     return (
         <div className={'list'}>
             {products.map(item => (
