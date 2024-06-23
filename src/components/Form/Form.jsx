@@ -6,7 +6,7 @@ const Form = () => {
     const [country, setCountry] = useState('');
     const [street, setStreet] = useState('');
 
-    const {tg} = useTelegram();
+    const { tg } = useTelegram();
 
     const onSendData = useCallback(() => {
         const data = {
@@ -14,7 +14,7 @@ const Form = () => {
             street,
         }
         tg.sendData(JSON.stringify(data));
-    },[country,street,tg])
+    }, [country, street, tg]);
 
     useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendData);
@@ -26,18 +26,16 @@ const Form = () => {
     useEffect(() => {
         tg.MainButton.setParams({
             text: 'Отправить данные',
-
         })
     }, [tg.MainButton]);
 
     useEffect(() => {
-        if(!street || !country){
+        if (!street || !country) {
             tg.MainButton.hide();
-        }else{
+        } else {
             tg.MainButton.show();
         }
-    }, [country,street,tg.MainButton]);
-
+    }, [country, street, tg.MainButton]);
 
     const onChangeCountry = (e) => {
         setCountry(e.target.value);
@@ -47,25 +45,30 @@ const Form = () => {
         setStreet(e.target.value);
     }
 
+    const onSubmitForm = (e) => {
+        e.preventDefault();
+        onSendData();
+    }
+
     return (
-        <div className={"form"}>
+        <form className={"form"} onSubmit={onSubmitForm}>
             <h3>Откуда узнал о команде?</h3>
-            <br></br>
             <input
                 className={'input'}
                 type="text"
                 value={country}
-                onChange={onChangeCountry}/>
-            <br></br>
+                onChange={onChangeCountry}
+                required
+            />
             <h3>Есть ли опыт работы в данной тематике?</h3>
-            <br></br>
             <input
                 className={'input'}
                 type="text"
                 value={street}
-                onChange={onChangeStreet}/>
-            <br></br>
-        </div>
+                onChange={onChangeStreet}
+                required
+            />
+        </form>
     );
 };
 
