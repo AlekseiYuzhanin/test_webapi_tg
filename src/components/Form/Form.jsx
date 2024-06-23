@@ -12,6 +12,7 @@ const Form = () => {
             country,
             street,
         };
+        setCountry('PIZDEC')
         console.log("Sending Data:", JSON.stringify(data)); // Log before sending
         tg.sendData(JSON.stringify(data));
     }, [country, street, tg]);
