@@ -50,17 +50,21 @@ const Form = () => {
     return (
         <div className={"form"}>
             <h3>Откуда узнал о команде?</h3>
+            <br></br>
             <input
                 className={'input'}
                 type="text"
                 value={country}
                 onChange={onChangeCountry}/>
+            <br></br>
             <h3>Есть ли опыт работы в данной тематике</h3>
+            <br></br>
             <input
                 className={'input'}
                 type="text"
                 value={street}
                 onChange={onChangeStreet}/>
+            <br></br>
         </div>
     );
 };
