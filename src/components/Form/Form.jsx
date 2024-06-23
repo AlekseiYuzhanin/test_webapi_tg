@@ -57,7 +57,7 @@ const Form = () => {
                 value={country}
                 onChange={onChangeCountry}/>
             <br></br>
-            <h3>Есть ли опыт работы в данной тематике</h3>
+            <h3>Есть ли опыт работы в данной тематике?</h3>
             <br></br>
             <input
                 className={'input'}
