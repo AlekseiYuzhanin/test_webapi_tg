@@ -12,8 +12,6 @@ const Form = () => {
             country,
             street,
         };
-        setCountry('PIZDEC')
-        console.log("Sending Data:", JSON.stringify(data)); // Log before sending
         tg.sendData(JSON.stringify(data));
     }, [country, street, tg]);
 
@@ -50,12 +48,16 @@ const Form = () => {
     return (
         <div className={"form"}>
             <h3>Введите ваши данные</h3>
+            <br/>
+            <h3>Откуда узнал о проекте?</h3>
             <input
                 className={'input'}
                 type="text"
                 value={country}
                 onChange={onChangeCountry}
             />
+            <br/>
+            <h3>Есть ли опыт работы в данной тематике?</h3>
             <input
                 className={'input'}
                 type="text"
